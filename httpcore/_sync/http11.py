@@ -64,6 +64,10 @@ class HTTP11Connection(ConnectionInterface):
             max_incomplete_event_size=self.MAX_INCOMPLETE_EVENT_SIZE,
         )
 
+    def allocate(self):
+        with self._state_lock:
+            self._state = HTTPConnectionState.NEW
+
     def handle_request(self, request: Request) -> Response:
         if not self.can_handle_request(request.url.origin):
             raise RuntimeError(

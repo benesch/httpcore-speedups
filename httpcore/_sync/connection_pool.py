@@ -21,6 +21,7 @@ class PoolRequest:
         self._connection_acquired = Event()
 
     def assign_to_connection(self, connection: ConnectionInterface | None) -> None:
+        connection.allocate()
         self.connection = connection
         self._connection_acquired.set()
 

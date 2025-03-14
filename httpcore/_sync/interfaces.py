@@ -85,6 +85,9 @@ class RequestInterface:
 
 
 class ConnectionInterface(RequestInterface):
+    def allocate(self):
+        raise NotImplementedError()  # pragma: nocover
+
     def close(self) -> None:
         raise NotImplementedError()  # pragma: nocover
 

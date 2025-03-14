@@ -164,6 +164,10 @@ class HTTPConnection(ConnectionInterface):
                 with Trace("retry", logger, request, kwargs) as trace:
                     self._network_backend.sleep(delay)
 
+    def allocate(self):
+        if self._connection is not None:
+            self._connection.allocate()
+
     def can_handle_request(self, origin: Origin) -> bool:
         return origin == self._origin
 
